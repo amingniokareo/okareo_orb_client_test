@@ -5,3 +5,11 @@ workflows:
   use-my-orb:
     jobs:
       - okareo-orb/run_test
+      - command-test:
+        docker:
+          - image: cimg/base:current
+        steps:
+          - checkout
+          - okareo-orb/setup
+          - okareo-orb/version
+          - okareo-orb/validate
