@@ -1,0 +1,7 @@
+version: 2.1
+orbs:
+  okareo-orb: okareo/okareo-orb@0.0.1
+workflows:
+  use-my-orb:
+    jobs:
+      - okareo-orb/run_test
