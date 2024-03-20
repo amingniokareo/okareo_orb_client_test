@@ -1,15 +1,21 @@
 version: 2.1
 orbs:
   okareo-orb: okareo/okareo-orb@0.0.1
+
+jobs:
+  # Create jobs to test orbs commands.
+  command-test:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - checkout
+      # Run your orb's commands to validate them.
+      - okareo-orb/setup
+      - okareo-orb/version
+      - okareo-orb/validate
+
 workflows:
   use-my-orb:
     jobs:
       - okareo-orb/run_test
-      - command-test:
-        docker:
-          - image: cimg/base:current
-        steps:
-          - checkout
-          - okareo-orb/setup
-          - okareo-orb/version
-          - okareo-orb/validate
+      - command-test
